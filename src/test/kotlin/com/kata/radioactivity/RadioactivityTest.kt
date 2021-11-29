@@ -19,6 +19,11 @@ class RadioactivityTest {
     fun `should map 102 range to marron`() {
         assertThat(102.toColor()).isEqualTo("marron")
     }
+
+    @Test
+    fun `should map 160 range to red`() {
+        assertThat(160.toColor()).isEqualTo("red")
+    }
 }
 
 private fun Int.toColor(): String = if (this == 55) "orange" else if(this == 102) "marron" else "yellow"
