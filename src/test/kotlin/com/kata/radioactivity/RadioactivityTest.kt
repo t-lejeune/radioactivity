@@ -21,5 +21,5 @@ class RadioactivityTest {
     }
 }
 
-private fun Int.toColor(): String = if (this == 55) "orange" else "yellow"
+private fun Int.toColor(): String = if (this == 55) "orange" else if(this == 102) "marron" else "yellow"
 
