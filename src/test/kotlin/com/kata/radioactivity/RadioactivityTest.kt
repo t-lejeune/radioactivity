@@ -6,33 +6,37 @@ import org.junit.jupiter.api.Test
 class RadioactivityTest {
 
     @Test
-    fun `should map 12 value to yellow`() {
+    fun `should return yellow if the value is between 0 and 50`() {
+        assertThat(0.toColor()).isEqualTo("yellow")
         assertThat(12.toColor()).isEqualTo("yellow")
+        assertThat(50.toColor()).isEqualTo("yellow")
     }
 
     @Test
-    fun `should map 55 value to orange`() {
-        assertThat(55.toColor()).isEqualTo("orange")
-    }
-
-    @Test
-    fun `should map 51 value to orange`() {
+    fun `should return orange if the value is between 51 and 100`() {
         assertThat(51.toColor()).isEqualTo("orange")
+        assertThat(70.toColor()).isEqualTo("orange")
+        assertThat(100.toColor()).isEqualTo("orange")
     }
 
     @Test
-    fun `should map 102 value to marron`() {
-        assertThat(102.toColor()).isEqualTo("marron")
+    fun `should return marron if the value is between 101 and 150`() {
+        assertThat(101.toColor()).isEqualTo("marron")
+        assertThat(112.toColor()).isEqualTo("marron")
+        assertThat(150.toColor()).isEqualTo("marron")
     }
 
     @Test
-    fun `should map 160 value to red`() {
+    fun `should return red for every value greater than 150`() {
+        assertThat(151.toColor()).isEqualTo("red")
         assertThat(160.toColor()).isEqualTo("red")
     }
 }
 
-private fun Int.toColor(): String = when(this){
+private fun Int.toColor(): String = when (this) {
+    in 0..50 -> "yellow"
     in 51..100 -> "orange"
-    else -> if (this == 102) "marron" else if (this == 160) "red" else "yellow"
+    in 101..150 -> "marron"
+    else -> "red"
 }
 
